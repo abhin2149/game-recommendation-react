@@ -8,15 +8,15 @@ import {SEARCH_URL} from "../utils/constant";
  * payload = RecommendPayload
  */
 export const searchApi = async (searchQuery: any) => {
-    const data = await axios
-        .get(`${SEARCH_URL}&search=${searchQuery}`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response: AxiosResponse) => response)
-        .catch((error) => {
-            throw error;
-        });
-    return data;
+  const data = await axios
+    .get(`${SEARCH_URL}&search=${searchQuery}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then((response: AxiosResponse) => response)
+    .catch((error) => {
+        throw error;
+    });
+  return data;
 };
