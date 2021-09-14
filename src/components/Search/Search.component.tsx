@@ -4,13 +4,11 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {searchApi} from "../../services/search-api";
 
-export default function SearchComponent({value, setValue}) {
+export default function SearchComponent({value, setValue, query, setQuery}) {
   const [open, setOpen] = React.useState(false);
-
-  const [query, setQuery] = React.useState('');
   const [options, setOptions] = React.useState([]);
   const [loading, setLoading] = React.useState(false)
-
+  console.log(query);
   React.useEffect(() => {
     let active = true;
     if (!loading) {
@@ -34,13 +32,20 @@ export default function SearchComponent({value, setValue}) {
     return () => {
         active = false;
     };
-  }, [loading, query]);
+  }, [loading,query]);
 
   React.useEffect(() => {
     if (!open) {
         setOptions([]);
     }
   }, [open]);
+
+  React.useEffect(() =>{
+    if(query !== ''){
+      setOpen(true);
+      setLoading(true);
+    }
+  },[query]);
 
   return (
     <Autocomplete

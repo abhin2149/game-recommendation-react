@@ -5,7 +5,6 @@ import {RECOMMEND_URL} from "../utils/constant";
 /**
  * * Game Recommendation
  * @param formData Request object
- * payload = RecommendPayload
  */
 export const gameRecommendApi = async (formData: any) => {
   const data = await axios

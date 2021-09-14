@@ -1,14 +1,13 @@
-import {Typography} from "@material-ui/core";
 import RecommendComponent from "./components/Recommend/Recommend.component";
+import './style.css'
 
 function App() {
   return (
-      <>
-          <Typography>
-              Welcome to Game Recommendation
-          </Typography>
+      <section>
+          <h1>Game Recommendation</h1>
           <RecommendComponent />
-      </>
+      </section>
+
   );
 }
 

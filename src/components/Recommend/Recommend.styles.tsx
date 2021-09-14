@@ -10,22 +10,24 @@ import {
   primaryBlue,
 } from '../../utils/colors';
 
-import { fontFamily, fontSize, lineHeight } from '../../utils/typography';
+import {fontFamily, fontSize, fontWeight, lineHeight} from '../../utils/typography';
 
 export const useStyles = makeStyles({
   iconStyle: {
     marginRight: '20px',
   },
   searchBoxStyle: {
-    backgroundColor: `${whiteBase}`,
+    backgroundColor: whiteBase,
     marginTop: '5%',
   },
   titleStyle: {
-    fontSize: `${fontSize.H4}`,
-    fontWeight: 'bold',
-    lineHeight: `${lineHeight}`,
-    textTransform: 'capitalize',
-    marginLeft: '5%'
+    marginTop: '2%',
+    color: whiteBase,
+    background: 'rgba(255,255,255,.2)',
+    padding: '2%',
+    fontSize: fontSize.H5,
+    textAlign: 'center',
+    borderRadius: '10px',
   },
   dividerStyle: {
     color: gray,
@@ -41,9 +43,13 @@ export const useStyles = makeStyles({
     marginLeft: '0rem',
   },
   containerStyle: {
-    width: '90%',
-    alignContent: 'center',
-    marginLeft: '5%',
+    textAlign: 'center',
+    marginTop: '3%',
+    width: '20%',
+    background: whiteBase,
+    boxShadow: '0px 8px 36px rgba(0, 0, 0, 0.16)',
+    borderRadius: '12px',
+    padding: '1%',
   },
   tableStyle: {
     marginBottom: '20px',
@@ -58,14 +64,14 @@ export const useStyles = makeStyles({
     fontSize: `${fontSize.B1}`,
   },
   modalStyle: {
-    width: '30%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '2%',
     background: whiteBase,
     boxShadow: '0px 8px 36px rgba(0, 0, 0, 0.16)',
     borderRadius: '12px',
     padding: '2%',
-    position: 'absolute',
-    left: '40%',
-    top: '30%',
   },
   modalTitle: {
     fontWeight: 'bold',
@@ -73,9 +79,10 @@ export const useStyles = makeStyles({
     marginBottom: '4%',
   },
   modalMessage: {
-    fontSize: `${fontSize.B1}`,
-    marginBottom: '5%',
-    color: 'rgba(21, 25, 32, 0.5)',
+    marginTop: '6%',
+    fontSize: fontSize.H7,
+    fontWeight: fontWeight.small,
+    color: darkGray2,
   },
   tableContainerStyle: {
     backgroundColor: `${whiteBase}`,
@@ -163,22 +170,5 @@ export const useStyles = makeStyles({
     padding: '50px',
     marginTop: '15%',
     marginLeft: '40%',
-  },
-  formControl: {
-    minWidth: 200,
-  },
-});
-
-export const paginationStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  caption: {
-    color: lightGray,
-  },
-  toolbar: {
-    '& > p:nth-of-type(2)': {
-      color: lightGray,
-    },
   },
 });
