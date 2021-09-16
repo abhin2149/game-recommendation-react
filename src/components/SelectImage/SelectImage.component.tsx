@@ -1,6 +1,6 @@
 import React from "react";
 import {useStyles} from "./SelectImage.styles";
-import {IconButton, Tooltip} from "@material-ui/core";
+import {Backdrop, CircularProgress, IconButton, Tooltip} from "@material-ui/core";
 import {PhotoCamera} from "@material-ui/icons";
 import {uploadImageApi} from "../../services/upload-image-api";
 import {imageSearchApi} from "../../services/image-search-api";
@@ -12,15 +12,18 @@ type IProps = {
 
 const SelectImage: React.FC<IProps> = ({setQuery}) => {
   const classes = useStyles();
+  const [loading, setLoading] = React.useState(false);
 
   const handleImageSearch = (url: string) => {
     imageSearchApi(url)
         .then((response: any) =>{
           console.log(response.data);
           setQuery(response.data.knowledge_graph.title);
+          setLoading(false);
         })
         .catch((err: any) => {
           console.log(err);
+          setLoading(false);
         });
   };
 
@@ -33,10 +36,12 @@ const SelectImage: React.FC<IProps> = ({setQuery}) => {
         })
         .catch((err: any) => {
           console.log(err);
+          setLoading(false);
         });
   }
 
   const handleCapture = ({ target }: any) => {
+    setLoading(true);
     handleSubmit(target.files[0]);
   };
 
@@ -60,6 +65,9 @@ const SelectImage: React.FC<IProps> = ({setQuery}) => {
             </IconButton>
           </label>
         </Tooltip>
+        <Backdrop className={classes.backdrop} open={loading} >
+          <CircularProgress color="inherit" />
+        </Backdrop>
       </div>
   );
 };

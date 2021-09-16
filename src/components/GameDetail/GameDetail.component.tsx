@@ -1,6 +1,6 @@
 import React from "react";
 import {useStyles} from "./GameDetail.styles";
-import {Typography} from "@material-ui/core";
+import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography} from "@material-ui/core";
 
 
 type IProps = {
@@ -13,17 +13,29 @@ const GameDetail: React.FC<IProps> = ({
   const classes = useStyles();
   console.log(game);
   return (
-      <div className={classes.modalStyle}>
-        <Typography>
-          {game.name}
-        </Typography>
-        <Typography>
-          {game.rating}
-        </Typography>
-        <Typography>
-          {game.metacritic}
-        </Typography>
-      </div>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+              component="img"
+              className={classes.media}
+              src={game.image}
+              title={game.slug}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {game.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {game.rating}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+      </Card>
   );
 };
 

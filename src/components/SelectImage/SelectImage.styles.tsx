@@ -9,4 +9,8 @@ export const useStyles = makeStyles(() => ({
   input: {
     display: "none",
   },
+  backdrop: {
+    zIndex: 1,
+    color: '#fff',
+  },
 }));

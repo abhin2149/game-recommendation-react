@@ -8,7 +8,7 @@ export default function SearchComponent({value, setValue, query, setQuery}) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const [loading, setLoading] = React.useState(false)
-  console.log(query);
+
   React.useEffect(() => {
     let active = true;
     if (!loading) {
@@ -32,20 +32,14 @@ export default function SearchComponent({value, setValue, query, setQuery}) {
     return () => {
         active = false;
     };
-  }, [loading,query]);
-
-  React.useEffect(() => {
-    if (!open) {
-        setOptions([]);
-    }
-  }, [open]);
+  }, [loading, query]);
 
   React.useEffect(() =>{
-    if(query !== ''){
+    if((query !== '' && !value) || (value && query !== value.name)){
       setOpen(true);
       setLoading(true);
     }
-  },[query]);
+  },[query, value]);
 
   return (
     <Autocomplete
@@ -62,7 +56,6 @@ export default function SearchComponent({value, setValue, query, setQuery}) {
           setValue(newValue);
         }}
         onInputChange={(_event: any, query: any) => {
-          setLoading(true);
           setQuery(query);
         }}
         getOptionSelected={(option, value) => option.id === value.id}

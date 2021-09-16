@@ -5,8 +5,8 @@ import { useStyles } from './Recommend.styles';
 import {Button, Grid, LinearProgress, Typography} from "@material-ui/core";
 import {gameRecommendApi} from "../../services/recommend-api";
 import SearchComponent from "../Search/Search.component";
-import GameDetail from "../GameDetail/GameDetail.component";
 import SelectImage from "../SelectImage/SelectImage.component";
+import ShowGame from "../ShowGame/ShowGame.component";
 
 
 const RecommendComponent: React.FC = () => {
@@ -39,6 +39,8 @@ const RecommendComponent: React.FC = () => {
         setLoading(false);
       });
   }
+
+
 
   return (
     <div>
@@ -73,12 +75,12 @@ const RecommendComponent: React.FC = () => {
           </Button>
         </Grid>
       </Grid>
-      {loading && <LinearProgress />}
-      {games.map(gameItem => {
-        return(
-          <GameDetail key={gameItem.id} game={gameItem} />
-        )
-      })}
+      <Grid>
+        {loading && <LinearProgress />}
+      </Grid>
+      <Grid style={{marginLeft: '3%', marginBottom: '5%'}}>
+        <ShowGame games={games} />
+      </Grid>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import {
   darkGray2,
   darkRed,
   darkGreen,
-  primaryBlue, blueDarker20,
+  primaryBlue,
 } from '../../utils/colors';
 
 import { fontFamily, fontSize, lineHeight } from '../../utils/typography';
@@ -15,6 +15,12 @@ import { fontFamily, fontSize, lineHeight } from '../../utils/typography';
 export const useStyles = makeStyles({
   iconStyle: {
     marginRight: '20px',
+  },
+  root: {
+    marginTop: '5%',
+  },
+  media: {
+    height: 500,
   },
   searchBoxStyle: {
     backgroundColor: `${whiteBase}`,
@@ -54,18 +60,13 @@ export const useStyles = makeStyles({
     fontSize: `${fontSize.B1}`,
   },
   modalStyle: {
-    width: '20%',
-    height: '20%',
-    border: `1px solid ${blueDarker20}`,
+    marginTop: '3%',
     padding: '1%',
     color: gray,
     background: whiteBase,
     borderRadius: '12px',
     fontSize: fontSize.ST3,
-    marginBottom: '0.5%',
     fontFamily: fontFamily.bodyFont2,
-    marginLeft: '20%',
-    marginTop: '3%',
   },
   modalTitle: {
     fontWeight: 'bold',
