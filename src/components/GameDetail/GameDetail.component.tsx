@@ -5,7 +5,6 @@ import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typog
 
 type IProps = {
   game: any
-
 };
 const GameDetail: React.FC<IProps> = ({
   game
@@ -13,12 +12,12 @@ const GameDetail: React.FC<IProps> = ({
   const classes = useStyles();
   console.log(game);
   return (
-      <Card className={classes.root}>
+      <Card className={classes.modalStyle}>
         <CardActionArea>
           <CardMedia
               component="img"
               className={classes.media}
-              src={game.image}
+              src={game.background_image}
               title={game.slug}
           />
           <CardContent>

@@ -2,10 +2,10 @@ import { makeStyles } from '@material-ui/core';
 import {
   whiteBase,
   gray,
-  darkGray2,
+  darkGray2, lightGray, darkRed, darkGreen, lightGray5,
 } from '../../utils/colors';
 
-import {fontSize, fontWeight, lineHeight} from '../../utils/typography';
+import {fontFamily, fontSize, fontWeight, lineHeight} from '../../utils/typography';
 
 export const useStyles = makeStyles({
   iconStyle: {
@@ -59,14 +59,14 @@ export const useStyles = makeStyles({
     fontSize: `${fontSize.B1}`,
   },
   modalStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '2%',
+    width: '60%',
+    height: '85%',
     background: whiteBase,
     boxShadow: '0px 8px 36px rgba(0, 0, 0, 0.16)',
     borderRadius: '12px',
-    padding: '2%',
+    position: 'absolute',
+    left: '20%',
+    top: '10%',
   },
   modalTitle: {
     fontWeight: 'bold',
@@ -78,5 +78,51 @@ export const useStyles = makeStyles({
     fontSize: fontSize.H7,
     fontWeight: fontWeight.small,
     color: darkGray2,
+  },
+  tableContainerStyle: {
+    marginLeft: '20%',
+    backgroundColor: `${whiteBase}`,
+    border: `1px solid ${lightGray5}`,
+    width: '60%',
+    padding: '2%',
+    borderRadius: 5,
+  },
+  tableHeaderStyle: {
+    color: darkGray2,
+    fontFamily: `${fontFamily.titleFont}`,
+    fontWeight: fontWeight.semiBold,
+    fontSize: `${fontSize.B1}`,
+    whiteSpace: 'nowrap',
+  },
+  tableGreyTextStyle: {
+    color: lightGray,
+    fontFamily: `${fontFamily.bodyFont2}`,
+    fontSize: `${fontSize.ST2}`,
+  },
+  tableBodyStyle: {
+    fontFamily: `${fontFamily.bodyFont2}`,
+    fontSize: `${fontSize.ST1}`,
+    color: darkGray2,
+    whiteSpace: 'nowrap',
+  },
+  hover: {
+    transition: 'transform .2s',
+    "&:hover": {
+      transform: "scale(1.05)",
+      cursor: 'pointer',
+    },
+  },
+  tablePaginationStyle: {
+    color: darkGray2,
+  },
+  debitTransactionStyle: {
+    fontFamily: `${fontFamily.bodyFont2}`,
+    fontSize: `${fontSize.ST3}`,
+    color: darkRed,
+  },
+  creditTransactionStyle: {
+    fontFamily: `${fontFamily.bodyFont2}`,
+    fontSize: `${fontSize.ST3}`,
+    color: darkGreen,
   },
 });

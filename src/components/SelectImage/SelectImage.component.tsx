@@ -7,10 +7,11 @@ import {imageSearchApi} from "../../services/image-search-api";
 
 
 type IProps = {
+  id: string;
   setQuery: (query: any) => void;
 };
 
-const SelectImage: React.FC<IProps> = ({setQuery}) => {
+const SelectImage: React.FC<IProps> = ({setQuery, id}) => {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
 
@@ -50,12 +51,12 @@ const SelectImage: React.FC<IProps> = ({setQuery}) => {
         <input
             accept="image/jpeg"
             className={classes.input}
-            id="gameImage"
+            id={id}
             type="file"
             onChange={handleCapture}
         />
         <Tooltip title="Select Image">
-          <label htmlFor="gameImage">
+          <label htmlFor={id}>
             <IconButton
                 color="primary"
                 aria-label="upload picture"

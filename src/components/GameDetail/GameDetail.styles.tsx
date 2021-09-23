@@ -20,7 +20,7 @@ export const useStyles = makeStyles({
     marginTop: '5%',
   },
   media: {
-    height: 500,
+    height: 600,
   },
   searchBoxStyle: {
     backgroundColor: `${whiteBase}`,
@@ -60,13 +60,14 @@ export const useStyles = makeStyles({
     fontSize: `${fontSize.B1}`,
   },
   modalStyle: {
-    marginTop: '3%',
-    padding: '1%',
-    color: gray,
+    width: '60%',
+    height: '85%',
     background: whiteBase,
+    boxShadow: '0px 8px 36px rgba(0, 0, 0, 0.16)',
     borderRadius: '12px',
-    fontSize: fontSize.ST3,
-    fontFamily: fontFamily.bodyFont2,
+    position: 'absolute',
+    left: '20%',
+    top: '10%',
   },
   modalTitle: {
     fontWeight: 'bold',

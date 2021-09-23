@@ -6,27 +6,54 @@ import {Button, Grid, LinearProgress, Typography} from "@material-ui/core";
 import {gameRecommendApi} from "../../services/recommend-api";
 import SearchComponent from "../Search/Search.component";
 import SelectImage from "../SelectImage/SelectImage.component";
-import ShowGame from "../ShowGame/ShowGame.component";
+import ShowGame from "../GameTable/ShowGame.component";
 
 
 const RecommendComponent: React.FC = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(null);
-  const [query, setQuery] = React.useState('');
+  const [value1, setValue1] = React.useState(null);
+  const [value2, setValue2] = React.useState(null);
+  const [value3, setValue3] = React.useState(null);
+  const [query1, setQuery1] = React.useState('');
+  const [query2, setQuery2] = React.useState('');
+  const [query3, setQuery3] = React.useState('');
   const [games, setGames] = React.useState([]);
   const [loading,setLoading] = React.useState(false);
 
-  const setNewValue = (value: any) => {
-    setValue(value);
+  const setNewValue1 = (value: any) => {
+    setValue1(value);
   }
 
-  const setNewQuery = (query: any) => {
-    setQuery(query);
+  const setNewValue2 = (value: any) => {
+    setValue2(value);
+  }
+
+  const setNewValue3 = (value: any) => {
+    setValue3(value);
+  }
+
+  const setNewQuery1 = (query: any) => {
+    setQuery1(query);
+  };
+
+  const setNewQuery2 = (query: any) => {
+    setQuery2(query);
+  };
+
+  const setNewQuery3 = (query: any) => {
+    setQuery3(query);
   };
 
   const getRecommendedGames = () =>{
     let formData = new FormData();
-    formData.append('game_id', value.id);
+
+    if(value1)
+      formData.append('game_id', value1.id)
+    if(value2)
+      formData.append('game_id', value2.id);
+    if(value3)
+      formData.append('game_id', value3.id);
+
     setLoading(true);
     gameRecommendApi(formData)
       .then((response: any) =>{
@@ -39,8 +66,6 @@ const RecommendComponent: React.FC = () => {
         setLoading(false);
       });
   }
-
-
 
   return (
     <div>
@@ -56,29 +81,31 @@ const RecommendComponent: React.FC = () => {
             alignItems="center"
         >
           <Grid item className={classes.modalStyle}>
-            <SearchComponent value={value} setValue={setNewValue} query={query} setQuery={setNewQuery}/>
+            <SearchComponent value={value1} setValue={setNewValue1} query={query1} setQuery={setNewQuery1}/>
             <Typography className={classes.modalMessage}>OR</Typography>
-            <SelectImage setQuery={setNewQuery}/>
-          </Grid>
-          {/*<Grid item className={classes.modalStyle}>
-            <SearchComponent value={value} setValue={setNewValue} query={query} setQuery={setNewQuery}/>
-            <SelectImage setQuery={setNewQuery}/>
+            <SelectImage id={'1'} setQuery={setNewQuery1}/>
           </Grid>
           <Grid item className={classes.modalStyle}>
-            <SearchComponent value={value} setValue={setNewValue} query={query} setQuery={setNewQuery}/>
-            <SelectImage setQuery={setNewQuery}/>
-          </Grid>*/}
+            <SearchComponent value={value2} setValue={setNewValue2} query={query2} setQuery={setNewQuery2}/>
+            <Typography className={classes.modalMessage}>OR</Typography>
+            <SelectImage id={'2'} setQuery={setNewQuery2}/>
+          </Grid>
+          <Grid item className={classes.modalStyle}>
+            <SearchComponent value={value3} setValue={setNewValue3} query={query3} setQuery={setNewQuery3}/>
+            <Typography className={classes.modalMessage}>OR</Typography>
+            <SelectImage id={'3'} setQuery={setNewQuery3}/>
+          </Grid>
         </Grid>
         <Grid item className={classes.containerStyle}>
-          <Button  variant='contained' color='primary' size="large" onClick={getRecommendedGames}>
+          <Button  variant='contained' color='primary' size="large" onClick={getRecommendedGames} disabled={!value1 && !value2 && !value3}>
             Let's Go !
           </Button>
         </Grid>
       </Grid>
-      <Grid>
+      <Grid style={{ marginBottom: '1%', marginTop: '3%'}}>
         {loading && <LinearProgress />}
       </Grid>
-      <Grid style={{marginLeft: '3%', marginBottom: '5%'}}>
+      <Grid style={{marginLeft: '1%', marginBottom: '5%', marginTop: '3%'}}>
         <ShowGame games={games} />
       </Grid>
     </div>
