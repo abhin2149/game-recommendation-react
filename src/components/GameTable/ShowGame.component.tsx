@@ -1,6 +1,5 @@
 import React from "react";
 import {useStyles} from "./ShowGame.style";
-//import GameDetail from "../GameDetail/GameDetail.component";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import ShowGameRow from "./ShowGameRow.component";
 import {Game} from "../../types/game";
@@ -8,9 +7,10 @@ import {Game} from "../../types/game";
 
 type IProps = {
   games: Game[];
+  showLikedGames: boolean;
 };
 
-const ShowGame: React.FC<IProps> = ({games}) => {
+const ShowGame: React.FC<IProps> = ({games, showLikedGames}) => {
   const classes = useStyles();
 
   if(games.length > 0 ){
@@ -28,11 +28,14 @@ const ShowGame: React.FC<IProps> = ({games}) => {
                 <TableCell className={classes.tableHeaderStyle} align="left">
                   Rating
                 </TableCell>
+                <TableCell className={classes.tableHeaderStyle} align="left">
+                  Released
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {games.map((game) => {
-                return <ShowGameRow key={game.id} game={game} />;
+                return <ShowGameRow key={game.id} game={game} showLikedGames={showLikedGames}/>;
               })}
             </TableBody>
           </Table>

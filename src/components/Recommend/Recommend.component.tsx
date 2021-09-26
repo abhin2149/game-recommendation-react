@@ -2,11 +2,12 @@
 
 import React from 'react'
 import { useStyles } from './Recommend.styles';
-import {Button, Grid, LinearProgress, Typography} from "@material-ui/core";
+import {Button, FormControlLabel, Grid, LinearProgress, Switch, Typography} from "@material-ui/core";
 import {gameRecommendApi} from "../../services/recommend-api";
 import SearchComponent from "../Search/Search.component";
 import SelectImage from "../SelectImage/SelectImage.component";
 import ShowGame from "../GameTable/ShowGame.component";
+import {fetchLikedGamesApi} from "../../services/fetch-games-api";
 
 
 const RecommendComponent: React.FC = () => {
@@ -18,6 +19,8 @@ const RecommendComponent: React.FC = () => {
   const [query2, setQuery2] = React.useState('');
   const [query3, setQuery3] = React.useState('');
   const [games, setGames] = React.useState([]);
+  const [likedGames, setLikedGames] = React.useState([]);
+  const [showLikedGames, setShowLikedGames] = React.useState(false);
   const [loading,setLoading] = React.useState(false);
 
   const setNewValue1 = (value: any) => {
@@ -44,7 +47,7 @@ const RecommendComponent: React.FC = () => {
     setQuery3(query);
   };
 
-  const getRecommendedGames = () =>{
+  const getRecommendedGames = () => {
     let formData = new FormData();
 
     if(value1)
@@ -54,6 +57,7 @@ const RecommendComponent: React.FC = () => {
     if(value3)
       formData.append('game_id', value3.id);
 
+    setShowLikedGames(false);
     setLoading(true);
     gameRecommendApi(formData)
       .then((response: any) =>{
@@ -66,6 +70,27 @@ const RecommendComponent: React.FC = () => {
         setLoading(false);
       });
   }
+
+  const getLikedGames = () => {
+    setLoading(true);
+    fetchLikedGamesApi()
+        .then((response: any) =>{
+          console.log(response);
+          setLikedGames(response.data)
+          setLoading(false);
+        })
+        .catch((err: any) => {
+          console.log(err);
+          setLoading(false);
+        });
+  }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if(event.target.checked){
+      getLikedGames();
+    }
+    setShowLikedGames(event.target.checked);
+  };
 
   return (
     <div>
@@ -96,17 +121,32 @@ const RecommendComponent: React.FC = () => {
             <SelectImage id={'3'} setQuery={setNewQuery3}/>
           </Grid>
         </Grid>
-        <Grid item className={classes.containerStyle}>
-          <Button  variant='contained' color='primary' size="large" onClick={getRecommendedGames} disabled={!value1 && !value2 && !value3}>
-            Let's Go !
-          </Button>
+        <Grid item container className={classes.containerStyle}>
+          <Grid item xs={6}>
+            <Button  variant='contained' color='primary' size="large" onClick={getRecommendedGames} disabled={!value1 && !value2 && !value3}>
+              Let's Go !
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <FormControlLabel
+                control={
+                  <Switch
+                      checked={showLikedGames}
+                      onChange={handleChange}
+                      name="checkedB"
+                      color="primary"
+                  />
+                }
+                label="Show Liked Games"
+            />
+          </Grid>
         </Grid>
       </Grid>
       <Grid style={{ marginBottom: '1%', marginTop: '3%'}}>
         {loading && <LinearProgress />}
       </Grid>
       <Grid style={{marginLeft: '1%', marginBottom: '5%', marginTop: '3%'}}>
-        <ShowGame games={games} />
+        <ShowGame games={showLikedGames ? likedGames : games} showLikedGames={showLikedGames}/>
       </Grid>
     </div>
   );

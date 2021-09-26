@@ -8,14 +8,17 @@ import GameDetail from "../GameDetail/GameDetail.component";
 
 type IProps = {
   game: Game;
+  showLikedGames: boolean
 };
 
-const ShowGameRow: React.FC<IProps> = ({ game }) => {
+const ShowGameRow: React.FC<IProps> = ({ game , showLikedGames}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
-    setOpen(true);
+    if(!showLikedGames){
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -33,6 +36,9 @@ const ShowGameRow: React.FC<IProps> = ({ game }) => {
           </TableCell>
           <TableCell className={classes.tableBodyStyle} align="left">
             {game.rating ? game.rating : 'N/A'}
+          </TableCell>
+          <TableCell className={classes.tableBodyStyle} align="left">
+            {game.released ? game.released : 'N/A'}
           </TableCell>
         </TableRow>
         <Modal

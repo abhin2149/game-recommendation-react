@@ -5,4 +5,5 @@ export interface Game {
   background_image: string;
   rating: string;
   metacritic: string;
+  released: string;
 }

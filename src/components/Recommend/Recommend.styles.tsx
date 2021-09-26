@@ -45,7 +45,7 @@ export const useStyles = makeStyles({
   containerStyle: {
     textAlign: 'center',
     marginTop: '3%',
-    width: '20%',
+    width: '30%',
     background: whiteBase,
     boxShadow: '0px 8px 36px rgba(0, 0, 0, 0.16)',
     borderRadius: '12px',

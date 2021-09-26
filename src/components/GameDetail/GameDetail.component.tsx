@@ -1,16 +1,34 @@
 import React from "react";
 import {useStyles} from "./GameDetail.styles";
 import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography} from "@material-ui/core";
+import {Game} from "../../types/game";
+import {saveLikedGamesApi} from "../../services/save-game-api";
 
 
 type IProps = {
-  game: any
+  game: Game
 };
 const GameDetail: React.FC<IProps> = ({
   game
 }) => {
   const classes = useStyles();
   console.log(game);
+
+  const likeGame = () => {
+    let formData = new FormData();
+    formData.append('id', game.id);
+    formData.append('name', game.name);
+    formData.append('rating', game.rating);
+    formData.append('date', game.released);
+    saveLikedGamesApi(formData)
+        .then((response: any) =>{
+          console.log(response);
+        })
+        .catch((err: any) => {
+          console.log(err);
+        });
+  };
+
   return (
       <Card className={classes.modalStyle}>
         <CardActionArea>
@@ -30,8 +48,8 @@ const GameDetail: React.FC<IProps> = ({
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Learn More
+          <Button size="small" color="primary" variant="contained" onClick={likeGame}>
+            Like
           </Button>
         </CardActions>
       </Card>
