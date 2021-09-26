@@ -1,5 +1,8 @@
 import { lighten, darken } from 'polished';
 
+/**
+ * * Color constants
+ */
 export const blueBase = '#546ccf';
 export const whiteBase = '#ffffff';
 export const background = '#F7F8FC';

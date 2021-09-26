@@ -5,7 +5,9 @@ import {PhotoCamera} from "@material-ui/icons";
 import {uploadImageApi} from "../../services/upload-image-api";
 import {imageSearchApi} from "../../services/image-search-api";
 
-
+/**
+ * * Component for image recognition feature
+ */
 type IProps = {
   id: string;
   setQuery: (query: any) => void;
@@ -18,7 +20,6 @@ const SelectImage: React.FC<IProps> = ({setQuery, id}) => {
   const handleImageSearch = (url: string) => {
     imageSearchApi(url)
         .then((response: any) =>{
-          console.log(response.data);
           setQuery(response.data.knowledge_graph.title);
           setLoading(false);
         })
@@ -31,7 +32,6 @@ const SelectImage: React.FC<IProps> = ({setQuery, id}) => {
   const handleSubmit = (file: any) => {
     uploadImageApi(file)
         .then((response: any) =>{
-          console.log(response.data.data);
           const url = response.data.data.url;
           handleImageSearch(url);
         })

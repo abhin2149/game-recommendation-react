@@ -4,15 +4,17 @@ import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typog
 import {Game} from "../../types/game";
 import {saveLikedGamesApi} from "../../services/save-game-api";
 
-
+/**
+ * * Component to show game details on click
+ */
 type IProps = {
   game: Game
 };
+
 const GameDetail: React.FC<IProps> = ({
   game
 }) => {
   const classes = useStyles();
-  console.log(game);
 
   const likeGame = () => {
     let formData = new FormData();
@@ -20,9 +22,9 @@ const GameDetail: React.FC<IProps> = ({
     formData.append('name', game.name);
     formData.append('rating', game.rating);
     formData.append('date', game.released);
+
     saveLikedGamesApi(formData)
-        .then((response: any) =>{
-          console.log(response);
+        .then((_response: any) =>{
         })
         .catch((err: any) => {
           console.log(err);

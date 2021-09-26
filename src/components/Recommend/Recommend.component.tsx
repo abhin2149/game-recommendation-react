@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import React from 'react'
 import { useStyles } from './Recommend.styles';
 import {Button, FormControlLabel, Grid, LinearProgress, Switch, Typography} from "@material-ui/core";
@@ -9,7 +8,9 @@ import SelectImage from "../SelectImage/SelectImage.component";
 import ShowGame from "../GameTable/ShowGame.component";
 import {fetchLikedGamesApi} from "../../services/fetch-games-api";
 
-
+/**
+ * * Component to show the landing page of WebApp
+ */
 const RecommendComponent: React.FC = () => {
   const classes = useStyles();
   const [value1, setValue1] = React.useState(null);
@@ -61,7 +62,6 @@ const RecommendComponent: React.FC = () => {
     setLoading(true);
     gameRecommendApi(formData)
       .then((response: any) =>{
-        console.log(response);
         setGames(response.data.games)
         setLoading(false);
       })
@@ -75,7 +75,6 @@ const RecommendComponent: React.FC = () => {
     setLoading(true);
     fetchLikedGamesApi()
         .then((response: any) =>{
-          console.log(response);
           setLikedGames(response.data)
           setLoading(false);
         })

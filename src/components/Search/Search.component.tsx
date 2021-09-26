@@ -4,6 +4,9 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {searchApi} from "../../services/search-api";
 
+/**
+ * * Component to search a game
+ */
 export default function SearchComponent({value, setValue, query, setQuery}) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
@@ -17,7 +20,6 @@ export default function SearchComponent({value, setValue, query, setQuery}) {
     (async () => {
         searchApi(query)
             .then((response: any) =>{
-                console.log(response)
                 if (active) {
                     setOptions(response.data.results);
                     setLoading(false);

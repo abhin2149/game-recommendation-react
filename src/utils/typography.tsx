@@ -1,5 +1,7 @@
 import { rem } from 'polished';
-
+/**
+ * * Styling constants
+ */
 export const lineHeight = 1.618;
 
 export const fontSize = {
@@ -35,20 +37,4 @@ export const fontFamily = {
   titleFont: 'Open Sans',
   bodyFont: 'Metropolis',
   bodyFont2: 'Inter',
-};
-
-export const letterSpacing = {
-  H1: '0rem',
-  H2: '0.031rem',
-  H3: '0rem',
-  H4: '0.15rem',
-  H5: '0rem',
-  H6: '0.15rem',
-  ST1: '0.1rem',
-  ST2: '0.031rem',
-  B1: '0.1rem',
-  B2: '0.12rem',
-  button: '0.15rem',
-  caption: '0.025rem',
-  overline: '0.094rem',
 };

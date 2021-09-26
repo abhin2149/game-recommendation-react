@@ -4,7 +4,9 @@ import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "
 import ShowGameRow from "./ShowGameRow.component";
 import {Game} from "../../types/game";
 
-
+/**
+ * * Component to show list of recommended games
+ */
 type IProps = {
   games: Game[];
   showLikedGames: boolean;
